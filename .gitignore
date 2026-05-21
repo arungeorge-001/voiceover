@@ -1,0 +1,39 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.egg-info/
+dist/
+build/
+.eggs/
+*.egg
+
+# Virtual environments
+venv/
+.venv/
+env/
+.env/
+
+# Output files
+*.mp4
+*.mp3
+*.webm
+*.mov
+*.avi
+*.mkv
+
+# OS / IDE
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+
+# Windows junk
+$RECYCLE.BIN/
+desktop.ini
+
+# Streamlit
+.streamlit/secrets.toml
+
+# Logs / debug
+*.log
