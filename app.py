@@ -20,6 +20,12 @@ from pathlib import Path
 
 import streamlit as st
 
+# Trust the OS certificate store so corporate SSL-inspecting proxies work
+try:
+    import truststore
+    truststore.inject_into_ssl()
+except ImportError:
+    pass
 
 # ─────────────────────────────────────────────────────────
 # Page config
