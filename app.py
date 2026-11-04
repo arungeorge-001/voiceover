@@ -157,8 +157,15 @@ def parse_script(md_text: str) -> str:
 
 async def _edge_tts(text: str, voice: str, rate: str, pitch: str, out_path: str):
     import edge_tts
-    comm = edge_tts.Communicate(text, voice, rate=rate, pitch=pitch)
-    await comm.save(out_path)
+    # Edge TTS occasionally returns no audio; retry once before failing
+    for attempt in range(2):
+        try:
+            comm = edge_tts.Communicate(text, voice, rate=rate, pitch=pitch)
+            await comm.save(out_path)
+            return
+        except edge_tts.exceptions.NoAudioReceived:
+            if attempt == 1:
+                raise
 
 
 def convert_script_to_mp3(md_text: str, voice: str, rate: str, pitch: str) -> tuple[bytes, str]:
